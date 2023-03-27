@@ -12,28 +12,28 @@
 <body>
     <h1 class="center">JADUAL DARAB</h1>
     <fieldset>
-        <br>
-        <form method="POST">
+       
+        <form>
             <label for="number">Masukkan Nombor:</label>
-            <input type="number" name="number" id="number"><br><br>
-            <input type="submit" name="generate" value="Jana">
+            <input type="number" name="number" id="number" min="1" max="12" value="<?php echo isset($_GET['number']) ? (int)$_GET['number'] : ''; ?>" onchange="this.form.submit()"><br>
         </form>
         <br>
         <?php
-        if (isset($_POST['generate'])) {
-            $number = $_POST['number'];
+        if (isset($_GET['number'])) {
+            $number = (int) $_GET['number'];
         ?>
-            <table align="center" border='1' >
-            <?php
-            for ($i = 1; $i <= 10; $i++) {
-                echo "<tr>";
-                echo "<td>$number x $i =</td>";
-                echo "<td>" . $number * $i . "</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-        }
-            ?>
+            <table id="multiplication-table" align="center" border='1'>
+                <?php for ($i = 1; $i <= 12; $i++) : ?>
+                    <tr>
+                        <td><?php echo $number; ?> x <?php echo $i; ?></td>
+                        <td>=</td>
+                        <td><?php echo $number * $i; ?></td>
+                    </tr>
+                <?php endfor; ?>
+            </table>
+        <?php
+        } ?>
+
     </fieldset>
 </body>
 
